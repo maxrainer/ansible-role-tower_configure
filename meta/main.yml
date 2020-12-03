@@ -1,0 +1,18 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  role_name: tower_configure
+  author: Markus Rainer
+  description: Ansible Tower configuration for Demos
+  company: Red Hat
+  min_ansible_version: 2.9
+  license: MIT
+
+  platforms: 
+    - name: GenericUNIX
+      versions:
+        - all
+        
+  galaxy_tags: [tower, ansible, demo, lab, networking]
