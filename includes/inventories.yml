@@ -1,6 +1,6 @@
 ---
 
-- include_vars: "{{ role_path }}/vars/inventory.yml"
+- include_vars: "{{ role_path }}/vars/inventories.yml"
 
 - name: customize inventories
   awx.awx.tower_inventory:
@@ -15,7 +15,7 @@
   loop: "{{ __tower_inventories }}"
   loop_control:
     label: "{{ item.name }}"
-  when: (item.tower_roles | intersect(tower_roles) | length) > 0 
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0
 
 - name: customize inventory sources
   awx.awx.tower_inventory_source:
@@ -64,6 +64,6 @@
     inventory: "{{ item.inventory}}"
   loop: "{{ __tower_hosts }}"
   loop_control:
-    label: "{{ item.name }}
+    label: "{{ item.name }}"
   when: (item.tower_roles | intersect(tower_roles) | length) > 0 
     

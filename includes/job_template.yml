@@ -30,6 +30,7 @@
   retries: 12
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0
 
 - name: job template results
   debug: 

@@ -7,7 +7,7 @@
   include_tasks: "{{ role_path }}/includes/project.yml"
 
 - name: inventories
-  include_tasks: "{{ role_path }}/includes/inventory.yml"
+  include_tasks: "{{ role_path }}/includes/inventories.yml"
 
 - name: job template
   include_tasks: "{{ role_path }}/includes/job_template.yml"

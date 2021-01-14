@@ -1,19 +1,18 @@
 ---
-# defaults file for ansible-tower-install
+# defaults file for tower-configure
 
-tower_customize: true
+#tower_customize: true
 tower_venv: true
 
 tower_roles: [default]
+tower_inventory: ""
+
 
 tower_setup_admin_password: "toweradmin"
 
 tower_github_personal_access_token: ""
 tower_github_token: ""
 
-
-
 aws_f5_license: ""
 aws_f5_password: ""
 
-tower_aws_vault_password: changeme

@@ -7,6 +7,7 @@ __tower_job_template:
     playbook: aws_router.yml
     credential: cisco ec2
     job_tags: interface
+    tower_roles: []
   - name: IOS Interface L3 Rollback 
     description: reset Interfaces to default configuration
     job_type: run
@@ -16,6 +17,7 @@ __tower_job_template:
     credential: cisco ec2
     job_tags: rollback, interface
     skip_tags: config
+    tower_roles: []
   - name: IOS Router BGP Configuration 
     description: Cisco Router WAN BGP configuration 
     job_type: run
@@ -24,6 +26,7 @@ __tower_job_template:
     playbook: aws_router.yml
     credential: cisco ec2
     job_tags: bgp
+    tower_roles: []
   - name: IOS Router BGP rollback
     description: Cisco Router WAN BGP configuration 
     job_type: run
@@ -33,6 +36,7 @@ __tower_job_template:
     credential: cisco ec2
     job_tags: bgp,rollback
     skip_tags: config
+    tower_roles: []
   - name: IOS Router facts 
     description: gather facts and debug output them
     job_type: run
@@ -42,6 +46,7 @@ __tower_job_template:
     credential: cisco ec2
     job_tags: facts
     verbosity: 2
+    tower_roles: []
   - name: IOS show command parser
     description: structured output for IOS commands (genie parser)
     job_type: run
@@ -53,39 +58,44 @@ __tower_job_template:
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_cmd_parser_survey.json') }}"
     custom_virtualenv: "{{ __tower_venv_path }}/genie"
-  - name: F5 Big-IP handle license
+    tower_roles: []
+  - name: F5 BIGIP 0001 - handle license
     description: install, revoke license
-    inventory: aws net-demo
-    project: network-lab
-    playbook: aws-f5.yml
+    inventory: "{{ tower_inventory }}"
+    project: Network Demos
+    playbook: f5_bigip_provision.yml
     job_tags: license
     job_type: run
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/f5_license_survey.json') }}"
-  - name: F5 Big-IP gather facts
+    tower_roles: [f5]
+  - name: F5 BIGIP 0002 - gather facts
     description: get facts from a list
-    inventory: aws net-demo
-    project: network-lab
-    playbook: aws-f5.yml
+    inventory: "{{ tower_inventory }}"
+    project: Network Demos
+    playbook: f5_bigip_provision.yml
     job_tags: facts
     job_type: run
     survey_enabled: yes
     verbosity: 2
     survey_spec: "{{ lookup('file', role_path+'/files/f5_facts_survey.json') }}"
-  - name: F5 Big-IP load balance webservers
+    tower_roles: [f5]
+  - name: F5 BIPGIP 0003 - load balance webservers
     description: get facts from a list
-    inventory: aws net-demo
-    project: network-lab
-    playbook: aws-f5.yml
+    inventory: "{{ tower_inventory }}"
+    project: Network Demos
+    playbook: f5_bigip_provision.yml
     job_tags: balance
     job_type: run
-  - name: provisioning webservers
+    tower_roles: [f5]
+  - name: LINUX 0001 - provisioning webservers
     description: apache and default website
-    inventory: aws net-demo
-    project: network-lab
-    playbook: aws-webserver.yml
+    inventory: "{{ tower_inventory }}"
+    project: Network Demos
+    playbook: webserver_prov.yml
     job_type: run
     credential: centos
+    tower_roles: [f5]
   - name: IOS CONFIG 001 - top level line
     description: match line in toplevel config
     inventory: KVM VIRL
@@ -97,6 +107,7 @@ __tower_job_template:
     ask_limit: yes
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_config_toplevel_lines.json') }}"
+    tower_roles: []
   - name: IOS CONFIG 002 - top level exact match
     description: match exact part in toplevel with running_config
     inventory: KVM VIRL
@@ -108,6 +119,7 @@ __tower_job_template:
     ask_limit: yes
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_config_toplevel_exact.json') }}"
+    tower_roles: []
   - name: IOS CONFIG 003 - interface line(s)
     description: match lines in nested interface config
     inventory: KVM VIRL
@@ -119,6 +131,7 @@ __tower_job_template:
     ask_limit: yes
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_config_nested_lines.json') }}"
+    tower_roles: []
   - name: IOS CONFIG 004 - interface config (exact)
     description: exact nested interface config (defaults interface before change)
     inventory: KVM VIRL
@@ -130,6 +143,7 @@ __tower_job_template:
     ask_limit: yes
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_config_nested_lines.json') }}"
+    tower_roles: []
   - name: IOS CONFIG 005 - QoS config
     description: multi nested QoS config
     inventory: KVM VIRL
@@ -141,6 +155,7 @@ __tower_job_template:
     ask_limit: yes
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/ios_config_multinested.json') }}"
+    tower_roles: []
   - name: IOS RM 001 - learn from network
     description: read network resources and push to GitHub SoT
     inventory: KVM VIRL
@@ -149,6 +164,7 @@ __tower_job_template:
     job_type: run
     playbook: device_pull_facts.yml
     extra_vars: "{{ lookup('file', role_path+'/files/sot_dir.json') }}"
+    tower_roles: []
   - name: IOS RM 002 - push intf config
     description: push interface and VLAN config to devices
     inventory: KVM VIRL
@@ -156,6 +172,7 @@ __tower_job_template:
     credential: virl_cisco
     job_type: run
     playbook: device_push_intf.yml
+    tower_roles: []
   - name: AWS EC2 001 - F5 only setup
     description: one network, F5 loadbalancer, public IP
     inventory: localhost
@@ -164,6 +181,7 @@ __tower_job_template:
     credential: aws
     playbook: provision.yml
     extra_vars: "{{ lookup('file', role_path+'/files/aws_f5_prov.json') }}"
+    tower_roles: []
   - name: AWS EC2 002 - post provisioning instances
     description: DNS, tower, user/pwd settings
     inventory: aws net-demo
@@ -174,6 +192,7 @@ __tower_job_template:
     project: AWS provision network demo
     job_type: run
     playbook: post.yml
+    tower_roles: []
   - name: AWS EC2 999 - teardown net demo
     description: teardown net-demo EC2 and VPC
     inventory: localhost
@@ -183,3 +202,4 @@ __tower_job_template:
     playbook: provision.yml
     job_tags: teardown
     skip_tags: always
+    tower_roles: []
