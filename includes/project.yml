@@ -11,6 +11,7 @@
     organization: Default
     name: "{{ item.name }}"
     scm_type: git
+    scm_branch: "{{ item.scm_branch | default(omit) }}"
     description: "{{ item.description | default(omit) }}"
     scm_clean: "{{ item.clean | default(omit) }}"
     scm_url: "{{ item.scm_url | default(omit) }}"

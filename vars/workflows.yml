@@ -6,26 +6,31 @@ __tower_workflow_template:
     description: provisioning and postprov F5 demo on AWS
     survey: "{{ lookup('file', role_path+'/files/aws_lab_count.json') }}"
     survey_enabled: yes
+    tower_roles: []
   - name: WF 002 - RM SoT to device intf
     description: provisioning and postprov F5 demo on AWS
     webhook_service: github
     webhook_credential: "{{ tower_github_token }}"
+    tower_roles: []
   
 __tower_workflow_node:
 # WF 001 - AWS F5 demo provisioning
   - identifier: teardown-f5-net-demo
     workflow: WF 001 - AWS F5 demo provisioning
     unified_job_template: AWS EC2 999 - teardown net demo
+    tower_roles: []
   - identifier: post-prov-f5-net-demo
     workflow: WF 001 - AWS F5 demo provisioning
     unified_job_template: AWS EC2 002 - post provisioning instances
     failure_nodes:
       - teardown-f5-net-demo
+    tower_roles: []
   - identifier: update-inv-f5-ec2-net-demo
     workflow: WF 001 - AWS F5 demo provisioning
     unified_job_template: ec2 net-demo
     success_nodes: 
       - post-prov-f5-net-demo
+    tower_roles: []
   - identifier: aws-f5-prov
     workflow: WF 001 - AWS F5 demo provisioning
     unified_job_template: AWS EC2 001 - F5 only setup
@@ -33,19 +38,23 @@ __tower_workflow_node:
       - update-inv-f5-ec2-net-demo
     failure_nodes: 
       - teardown-f5-net-demo
+    tower_roles: []
 # WF 002 - RM SoT to device intf
   - identifier: ios-rm-002
     workflow: WF 002 - RM SoT to device intf
     unified_job_template: IOS RM 002 - push intf config
+    tower_roles: []
   - identifier: update-inv-virl-github
     workflow: WF 002 - RM SoT to device intf
     unified_job_template: VIRL github SoT
     success_nodes:
       - ios-rm-002
+    tower_roles: []
   - identifier: update-project-demo-sot
     workflow: WF 002 - RM SoT to device intf
     unified_job_template: Network Demo SoT
     success_nodes:
       - update-inv-virl-github
+    tower_roles: []
 
     

@@ -30,6 +30,13 @@ __tower_inventory_sources:
     overwrite: yes
     inventory: KVM VIRL
     tower_roles: []
+  - name: EVE-NG F5 lab
+    source: scm
+    source_project: dynamic inventory EVE-NG F5 lab
+    source_path: site.yaml.yml
+    overwrite: yes
+    inventory: eve-ng lab
+    tower_roles: [f5]
 
 __tower_groups:
   - name: function_router

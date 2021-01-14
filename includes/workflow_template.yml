@@ -21,6 +21,7 @@
   retries: 5
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0
 
 - name: customize workflow nodes
   awx.awx.tower_workflow_job_template_node:
@@ -41,3 +42,4 @@
   retries: 5
   loop_control:
     label: "{{ item.identifier }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0

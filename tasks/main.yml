@@ -1,24 +1,11 @@
 ---
 
-# - name: take variables from shared vars
-#   set_fact: 
-#     tower_pem_key_name: "{{ pem_key_name | default(omit) }}"
-#     tower_pem_key_location: "{{ pem_key_location | default(omit) }}"
-#     tower_pem_key: "{{ pem_key_location }}{{ pem_key_name }}.pem"
-#   when: pem_key_name is defined and pem_key_location is defined
-#   tags: [always]
-
 - include_tasks: 
     file: venv.yml
     apply:
       tags: [always] 
-  when: tower_venv
-  tags: [config, customize, venv]
+  tags: [venv]
 
 - name: customize tower
   include_tasks: 
     file: customize.yml
-    apply:
-      tags: [always]
-  when: tower_customize
-  tags: [config, customize]

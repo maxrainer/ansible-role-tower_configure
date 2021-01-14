@@ -63,7 +63,7 @@ __tower_job_template:
     description: install, revoke license
     inventory: "{{ tower_inventory }}"
     project: Network Demos
-    playbook: f5_bigip_provision.yml
+    playbook: playbooks/f5_bigip_provision.yml
     job_tags: license
     job_type: run
     survey_enabled: yes
@@ -73,7 +73,7 @@ __tower_job_template:
     description: get facts from a list
     inventory: "{{ tower_inventory }}"
     project: Network Demos
-    playbook: f5_bigip_provision.yml
+    playbook: playbooks/f5_bigip_provision.yml
     job_tags: facts
     job_type: run
     survey_enabled: yes
@@ -84,7 +84,7 @@ __tower_job_template:
     description: get facts from a list
     inventory: "{{ tower_inventory }}"
     project: Network Demos
-    playbook: f5_bigip_provision.yml
+    playbook: playbooks/f5_bigip_provision.yml
     job_tags: balance
     job_type: run
     tower_roles: [f5]
@@ -92,7 +92,7 @@ __tower_job_template:
     description: apache and default website
     inventory: "{{ tower_inventory }}"
     project: Network Demos
-    playbook: webserver_prov.yml
+    playbook: playbooks/webserver_prov.yml
     job_type: run
     credential: centos
     tower_roles: [f5]

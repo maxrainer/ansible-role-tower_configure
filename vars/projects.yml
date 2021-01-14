@@ -25,5 +25,11 @@ __tower_projects:
     tower_roles: []
   - name: Network Demos
     description: general repo for network demos 
-    scm_url: https://github.com/maxrainer/
+    scm_url: https://github.com/maxrainer/network-demos.git
     tower_roles: [f5, cisco]
+  - name: dynamic inventory EVE-NG F5 lab
+    description: dynamic inventories for network demos
+    scm_url: https://github.com/maxrainer/network-demos-inventory.git
+    scm_clean: yes
+    scm_branch: eve-f5
+    tower_roles: [f5]
