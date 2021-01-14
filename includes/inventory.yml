@@ -3,7 +3,7 @@
 - include_vars: "{{ role_path }}/vars/inventory.yml"
 
 - name: customize inventories
-  tower_inventory:
+  awx.awx.tower_inventory:
     tower_host: "https://{{ ansible_host }}"
     tower_username: admin
     tower_password: "{{ tower_setup_admin_password }}"
@@ -15,6 +15,7 @@
   loop: "{{ __tower_inventories }}"
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0 
 
 - name: customize inventory sources
   awx.awx.tower_inventory_source:
@@ -34,6 +35,7 @@
   loop: "{{ __tower_inventory_sources }}"
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0 
 
 - name: customize inventory groups
   tower_group: 
@@ -48,6 +50,7 @@
   loop: "{{ __tower_groups }}"
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0 
 
 - name: customize inventory hosts
   awx.awx.tower_host:
@@ -61,5 +64,6 @@
     inventory: "{{ item.inventory}}"
   loop: "{{ __tower_hosts }}"
   loop_control:
-    label: "{{ item.name }}"
+    label: "{{ item.name }}
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0 
     

@@ -13,7 +13,7 @@
     apply:
       tags: [always] 
   when: tower_venv
-  tags: [config, customize]
+  tags: [config, customize, venv]
 
 - name: customize tower
   include_tasks: 

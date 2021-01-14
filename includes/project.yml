@@ -17,3 +17,4 @@
   loop: "{{ __tower_projects }}"
   loop_control:
     label: "{{ item.name }}"
+  when: (item.tower_roles | intersect(tower_roles) | length) > 0
