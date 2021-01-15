@@ -79,7 +79,6 @@ __tower_job_template:
     job_type: run
     credential: vault
     survey_enabled: yes
-    verbosity: 2
     survey_spec: "{{ lookup('file', role_path+'/files/f5_facts_survey.json') }}"
     tower_roles: [f5]
   - name: F5 BIGIP 0003 - load balance webservers
