@@ -65,6 +65,7 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/f5_bigip_provision.yml
     job_tags: license
+    credential: vault
     job_type: run
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/f5_license_survey.json') }}"
@@ -76,6 +77,7 @@ __tower_job_template:
     playbook: playbooks/f5_bigip_provision.yml
     job_tags: facts
     job_type: run
+    credential: vault
     survey_enabled: yes
     verbosity: 2
     survey_spec: "{{ lookup('file', role_path+'/files/f5_facts_survey.json') }}"
@@ -86,6 +88,7 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/f5_bigip_provision.yml
     job_tags: balance
+    credential: vault
     job_type: run
     tower_roles: [f5]
   # - name: F5 BIGIP 0004 - poolmember state change 
