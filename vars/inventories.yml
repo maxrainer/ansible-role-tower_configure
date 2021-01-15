@@ -35,6 +35,7 @@ __tower_inventory_sources:
     source_project: dynamic inventory EVE-NG F5 lab
     source_path: site.yaml.yml
     overwrite: yes
+    update_on_project_update: yes
     inventory: eve-ng lab
     tower_roles: [f5]
 

@@ -80,13 +80,30 @@ __tower_job_template:
     verbosity: 2
     survey_spec: "{{ lookup('file', role_path+'/files/f5_facts_survey.json') }}"
     tower_roles: [f5]
-  - name: F5 BIPGIP 0003 - load balance webservers
+  - name: F5 BIGIP 0003 - load balance webservers
     description: get facts from a list
     inventory: "{{ tower_inventory }}"
     project: Network Demos
     playbook: playbooks/f5_bigip_provision.yml
     job_tags: balance
     job_type: run
+    tower_roles: [f5]
+  # - name: F5 BIGIP 0004 - poolmember state change 
+  #   description: get facts from a list
+  #   inventory: "{{ tower_inventory }}"
+  #   project: Network Demos
+  #   playbook: playbooks/f5_bigip_provision.yml
+  #   job_tags: poolmember
+  #   job_type: run
+  #   survey_enabled: yes
+  #   survey_spec: "{{ lookup('file', role_path+'/files/f5_poolmember_state_survey.json') }}"
+  #   tower_roles: [f5]
+  - name: F5 BIGIP 0004 - dynamic pool state templates 
+    description: create dynamic pool state templates on Tower
+    project: Network Demo
+    job_type: run
+    playbook: playbooks/f5_tower_sync.yml
+    credential: tower
     tower_roles: [f5]
   - name: LINUX 0001 - provisioning webservers
     description: apache and default website
