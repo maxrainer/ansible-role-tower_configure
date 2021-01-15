@@ -100,7 +100,7 @@ __tower_job_template:
   #   tower_roles: [f5]
   - name: F5 BIGIP 0004 - dynamic pool state templates 
     description: create dynamic pool state templates on Tower
-    project: Network Demo
+    project: Network Demos
     job_type: run
     playbook: playbooks/f5_tower_sync.yml
     credential: tower
