@@ -99,6 +99,15 @@ __tower_job_template:
     inventory: "{{ tower_inventory }}"
     credential: tower
     tower_roles: [f5]
+  - name: F5 BIGIP 0005 - pool reporting
+    description: generate HTML report for pools
+    project: Network Demos
+    job_type: run
+    playbook: playbooks/f5_bigip_provision.yml
+    job_tags: reports
+    inventory: "{{ tower_inventory }}"
+    credential: tower
+    tower_roles: [f5]
   - name: LINUX 0001 - provisioning webservers
     description: apache and default website
     inventory: "{{ tower_inventory }}"
