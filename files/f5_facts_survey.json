@@ -11,7 +11,7 @@
           "min": null,
           "max": null,
           "default": "system-info",
-          "choices": "system-info\nall\ninterfaces\nprofiles\ndevices\nvirtual-servers\nvirtual-addresses"
+          "choices": "system-info\ninterfaces\nprofiles\ndevices\nvirtual-servers\nnodes\nvirtual-addresses\nltm-pools\nltm-policies\nssl-certs\nall"
       }
   ]
 }

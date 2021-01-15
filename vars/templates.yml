@@ -104,9 +104,9 @@ __tower_job_template:
     project: Network Demos
     job_type: run
     playbook: playbooks/f5_bigip_provision.yml
-    job_tags: reports
+    job_tags: report
     inventory: "{{ tower_inventory }}"
-    credential: tower
+    credential: vault
     tower_roles: [f5]
   - name: LINUX 0001 - provisioning webservers
     description: apache and default website
