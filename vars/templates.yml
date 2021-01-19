@@ -107,6 +107,18 @@ __tower_job_template:
     inventory: "{{ tower_inventory }}"
     credential: vault
     tower_roles: [f5]
+  - name: F5 BIGIP 0006 - reverse engineering
+    description: learn from F5 BigIP and push back to SoT
+    project: Network Demos
+    job_type: run
+    playbook: playbooks/f5_bigip_provision.yml
+    job_tags: reverse
+    inventory: "{{ tower_inventory }}"
+    credential: vault
+    extra_vars: 
+      f5_tower_username: admin
+      f5_tower_host: "https://{{ ansible_host }}"
+    tower_roles: [f5]
   - name: LINUX 0001 - provisioning webservers
     description: apache and default website
     inventory: "{{ tower_inventory }}"
