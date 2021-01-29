@@ -4,6 +4,6 @@
 __tower_venv_path: /opt/venvs
 __tower_venvs:
   - name: genie
-    pip: ['psutil','ansible','paramiko','genie==19.12','pyats==19.12','jmespath'] 
+    pip: ['psutil', 'ansible', 'paramiko', 'genie==19.12', 'pyats==19.12', 'jmespath'] 
   - name: parser
-    pip: ['psutil','ansible','paramiko','genie', 'pyats', 'jmespath', 'textfsm', 'ntc_templates']
+    pip: ['psutil', 'ansible', 'paramiko', 'genie', 'pyats', 'jmespath', 'textfsm', 'ntc_templates']
