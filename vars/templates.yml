@@ -134,9 +134,16 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/network_report.yml
     job_type: run
-    ask_limit: yes
-    ask_inventory: yes
-    ask_credential: yes
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: general
+    extra_vars:
+      rp_output: debug
+    custom_virtualenv: /opt/venvs/parser
+    ask_limit_on_launch: yes
+    limit: cisco
+    survey_enabled: yes
+    survey_spec: "{{ lookup('file', role_path+'/files/parser_general_survey.json') }}"
     tower_roles: [netparser]
 
   - name: IOS CONFIG 001 - top level line

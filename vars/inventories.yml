@@ -43,7 +43,6 @@ __tower_inventory_sources:
     source_project: dynamic inventory Eve-NG NXOS lab
     source_path: site.yaml.yml
     overwrite: yes
-    update_on_project_update: yes
     inventory: eve-ng lab
     tower_roles: [netparser]
 

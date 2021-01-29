@@ -1,0 +1,30 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "question_name": "Command",
+            "question_description": "command to execute on device",
+            "required": true,
+            "type": "text",
+            "variable": "rp_command",
+            "min": 0,
+            "max": 1024,
+            "default": "show version",
+            "choices": "",
+            "new_question": true
+        },
+        {
+            "question_name": "Parser",
+            "question_description": "select library",
+            "required": true,
+            "type": "multiplechoice",
+            "variable": "rp_parser",
+            "min": null,
+            "max": null,
+            "default": "ansible.netcommon.pyats",
+            "choices": "ansible.netcommon.pyats\nansible.netcommon.native\nansible.netcommon.textfsm\nansible.netcommon.ntc_templates",
+            "new_question": true
+        }
+    ]
+}
