@@ -145,6 +145,36 @@ __tower_job_template:
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/parser_general_survey.json') }}"
     tower_roles: [netparser]
+  - name: NET PARSER 0002 - generate HTML reports
+    description: generate different HTML reports
+    project: Network Demos
+    playbook: playbooks/network_report.yml
+    job_type: run
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: [inventory, interface]
+    extra_vars:
+      rp_output: html
+      rp_output_dir: /opt/reports/
+    custom_virtualenv: /opt/venvs/parser
+    ask_limit_on_launch: yes
+    limit: cisco
+    tower_roles: [netparser]
+  - name: NET PARSER 0003 - generate JSON inventory
+    description: generate different HTML reports
+    project: Network Demos
+    playbook: playbooks/network_report.yml
+    job_type: run
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: [inventory]
+    extra_vars:
+      rp_output: json
+      rp_output_dir: /opt/reports/
+    custom_virtualenv: /opt/venvs/parser
+    ask_limit_on_launch: yes
+    limit: cisco
+    tower_roles: [netparser]
 
   - name: IOS CONFIG 001 - top level line
     description: match line in toplevel config
