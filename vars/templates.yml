@@ -106,6 +106,8 @@ __tower_job_template:
     job_tags: report
     inventory: "{{ tower_inventory }}"
     credential: vault
+    extra_vars:
+      f5_web_dir: /opt/reports/
     tower_roles: [f5]
   - name: F5 BIGIP 0006 - reverse engineering
     description: learn from F5 BigIP and push back to SoT
@@ -127,6 +129,16 @@ __tower_job_template:
     job_type: run
     credential: centos
     tower_roles: [f5]
+  - name: NET PARSER 0001 - general parser
+    description: select parser and command
+    project: Network Demos
+    playbook: playbooks/network_report.yml
+    job_type: run
+    ask_limit: yes
+    ask_inventory: yes
+    ask_credential: yes
+    tower_roles: [netparser]
+
   - name: IOS CONFIG 001 - top level line
     description: match line in toplevel config
     inventory: KVM VIRL

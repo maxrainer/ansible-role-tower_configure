@@ -11,7 +11,7 @@ __tower_inventories:
     tower_roles: []
   - name: eve-ng lab
     description: EVE-NG lab environment
-    tower_roles: [f5, cisco]
+    tower_roles: [f5, netparser]
 
 __tower_inventory_sources:
   - name: ec2 net-demo
@@ -38,6 +38,14 @@ __tower_inventory_sources:
     update_on_project_update: yes
     inventory: eve-ng lab
     tower_roles: [f5]
+  - name: EVE-NG NXOS lab
+    source: scm
+    source_project: dynamic inventory Eve-NG NXOS lab
+    source_path: site.yaml.yml
+    overwrite: yes
+    update_on_project_update: yes
+    inventory: eve-ng lab
+    tower_roles: [netparser]
 
 __tower_groups:
   - name: function_router
