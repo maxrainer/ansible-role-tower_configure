@@ -129,6 +129,7 @@ __tower_job_template:
     job_type: run
     credential: centos
     tower_roles: [f5]
+    
   - name: NET PARSER 0001 - general parser
     description: select parser and command
     project: Network Demos
@@ -152,7 +153,7 @@ __tower_job_template:
     job_type: run
     credential: ciscoadmin
     inventory: "{{ tower_inventory }}"
-    job_tags: [inventory, interface]
+    job_tags: inventory, interface
     extra_vars:
       rp_output: html
       rp_output_dir: /opt/reports/
@@ -167,7 +168,7 @@ __tower_job_template:
     job_type: run
     credential: ciscoadmin
     inventory: "{{ tower_inventory }}"
-    job_tags: [inventory]
+    job_tags: inventory
     extra_vars:
       rp_output: json
       rp_output_dir: /opt/reports/
@@ -175,6 +176,29 @@ __tower_job_template:
     ask_limit_on_launch: yes
     limit: cisco
     tower_roles: [netparser]
+  
+  - name: BGP ROUTING 0001 - template based config
+    description: configure BGP router with Jinja template
+    project: Network Demos
+    playbook: playbooks/routing_bgp.yml
+    job_type: run
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: template
+    ask_limit_on_launch: yes
+    limit: nxos
+    tower_roles: [routing]
+  - name: BGP ROUTING 0002 - resource module configuration
+    description: configure BGP router with resource modules
+    project: Network Demos
+    playbook: playbooks/routing_bgp.yml
+    job_type: run
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: rm
+    ask_limit_on_launch: yes
+    limit: nxos
+    tower_roles: [routing]
 
   - name: IOS CONFIG 001 - top level line
     description: match line in toplevel config

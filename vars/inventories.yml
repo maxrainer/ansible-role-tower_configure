@@ -65,5 +65,7 @@ __tower_groups:
 
 __tower_hosts:
   - name: localhost
-    inventory: localhost
-    tower_roles: []
+    inventory: eve-ng lab
+    variables:
+      ansible_python_interpreter: /usr/bin/python3
+    tower_roles: [netparser]

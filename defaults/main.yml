@@ -4,6 +4,8 @@
 #tower_customize: true
 tower_venv: true
 
+#valid roles:
+# netparser, f5, routing
 tower_roles: [default]
 tower_inventory: ""
 
