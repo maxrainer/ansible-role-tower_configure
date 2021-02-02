@@ -176,6 +176,22 @@ __tower_job_template:
     ask_limit_on_launch: yes
     limit: cisco
     tower_roles: [netparser]
+  - name: NET PARSER 0004 - gather facts 
+    description: gather facts from different platforms, output debug or json file
+    project: Network Demos
+    playbook: playbooks/network_report.yml
+    job_type: run
+    credential: ciscoadmin
+    inventory: "{{ tower_inventory }}"
+    job_tags: facts
+    extra_vars:
+      rp_output_dir: /opt/reports/
+    custom_virtualenv: /opt/venvs/parser
+    ask_limit_on_launch: yes
+    survey_enabled: yes
+    survey_spec: "{{ lookup('file', role_path+'/files/parser_facts_survey.json') }}"
+    limit: cisco
+    tower_roles: [netparser]
   
   - name: BGP ROUTING 0001 - template based config
     description: configure BGP router with Jinja template
@@ -198,6 +214,8 @@ __tower_job_template:
     job_tags: rm
     ask_limit_on_launch: yes
     limit: nxos
+    survey_enabled: yes
+    survey_spec: "{{ lookup('file', role_path+'/files/routing_bgp_rm_survey.json') }}"
     tower_roles: [routing]
 
   - name: IOS CONFIG 001 - top level line

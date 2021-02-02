@@ -1,0 +1,18 @@
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "question_name": "State",
+            "question_description": "Resource Module State",
+            "required": true,
+            "type": "multiplechoice",
+            "variable": "bgp_rm_state",
+            "min": null,
+            "max": null,
+            "default": "replaced",
+            "choices": "replaced\nmerged\ndeleted\npurged",
+            "new_question": true
+        }
+    ]
+}

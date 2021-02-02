@@ -1,0 +1,42 @@
+
+{
+    "name": "",
+    "description": "",
+    "spec": [
+        {
+            "question_name": "Output",
+            "question_description": "json or debug output",
+            "required": true,
+            "type": "multiplechoice",
+            "variable": "rp_output",
+            "min": null,
+            "max": null,
+            "default": "debug",
+            "choices": "debug\njson",
+            "new_question": true
+        },
+        {
+            "question_name": "Facts subset",
+            "question_description": "When supplied, this argument will restrict the facts collected to a given subset.",
+            "required": true,
+            "type": "multiselect",
+            "variable": "rp_facts_gather_subset",
+            "min": null,
+            "max": null,
+            "default": "min",
+            "choices": "all\nmin\nhardware\nconfig\nlegacy\ninterfaces\n!all\n!config\n!interfaces",
+            "new_question": true
+        },
+        {
+            "question_name": "Network Resources",
+            "question_description": "When supplied, this argument will restrict the facts collected to a given subset.",
+            "required": true,
+            "type": "multiselect",
+            "variable": "rp_facts_gather_network_resources",
+            "min": null,
+            "max": null,
+            "default": "all",
+            "choices": "all\nvlans\nlacp\nl2_interfaces\nl3_interfaces\nacls\nacl_interfaces\nospfv2\nbgp_global\nstatic_routes"
+        }
+    ]
+}
