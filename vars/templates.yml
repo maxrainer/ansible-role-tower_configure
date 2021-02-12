@@ -217,6 +217,49 @@ __tower_job_template:
     survey_enabled: yes
     survey_spec: "{{ lookup('file', role_path+'/files/routing_bgp_rm_survey.json') }}"
     tower_roles: [routing]
+  
+  - name: CISCO ACI 0001 - tenant configuration
+    description: configure Cisco APIC controller tenants and app profiles
+    project: Network Demos
+    playbook: playbooks/aci_general_config.yml
+    job_type: run
+    inventory: "{{ tower_inventory }}"
+    job_tags: tenant
+    tower_roles: [aci]
+  - name: CISCO ACI 0002 - vrf configuration
+    description: configure Cisco APIC controller tenants and app profiles
+    project: Network Demos
+    playbook: playbooks/aci_general_config.yml
+    job_type: run
+    inventory: "{{ tower_inventory }}"
+    job_tags: vrf
+    tower_roles: [aci]  
+  - name: CISCO ACI 0003 - bridge domain configuration
+    description: configure Cisco APIC controller bridge domain and subnet
+    project: Network Demos
+    playbook: playbooks/aci_general_config.yml
+    job_type: run
+    inventory: "{{ tower_inventory }}"
+    job_tags: bd
+    tower_roles: [aci]
+  - name: CISCO ACI 0004 - epg configuration
+    description: configure Cisco APIC controller epg
+    project: Network Demos
+    playbook: playbooks/aci_epg_config.yml
+    job_type: run
+    inventory: "{{ tower_inventory }}"
+    job_tags: epg
+    limit: epg
+    tower_roles: [aci]
+  - name: CISCO ACI 0005 - epg reverse to inventory
+    description: reverse engineer EPGs from APIC controller to Tower inventory
+    project: Network Demos
+    playbook: playbooks/aci_general_config.yml
+    credential: vault
+    job_type: run
+    inventory: "{{ tower_inventory }}"
+    job_tags: reverse
+    tower_roles: [aci]
 
   - name: IOS CONFIG 001 - top level line
     description: match line in toplevel config

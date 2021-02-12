@@ -12,6 +12,9 @@ __tower_inventories:
   - name: eve-ng lab
     description: EVE-NG lab environment
     tower_roles: [f5, netparser]
+  - name: Cisco ACI Sandbox
+    description: DevNet public APIC controller
+    tower_roles: [aci]
 
 __tower_inventory_sources:
   - name: ec2 net-demo
@@ -45,6 +48,13 @@ __tower_inventory_sources:
     overwrite: yes
     inventory: eve-ng lab
     tower_roles: [netparser]
+  - name: Cisco ACI Sandbox lab
+    source: scm
+    source_project: dynamic inventory ACI Sandbox
+    source_path: site.yaml.yml
+    overwrite: yes
+    inventory: Cisco ACI Sandbox
+    tower_roles: [aci]
 
 __tower_groups:
   - name: function_router

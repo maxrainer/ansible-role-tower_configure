@@ -39,3 +39,9 @@ __tower_projects:
     scm_clean: yes
     scm_branch: nxos
     tower_roles: [netparser, routing]
+  - name: dynamic inventory ACI Sandbox
+    description: dynamic inventories for Cisco ACI sandbox
+    scm_url: https://github.com/maxrainer/network-demos-inventory.git
+    scm_clean: yes
+    scm_branch: sanbox-aci
+    tower_roles: [aci]
