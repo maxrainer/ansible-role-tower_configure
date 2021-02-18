@@ -223,6 +223,7 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/aci_general_config.yml
     job_type: run
+    credential: vault
     inventory: "{{ tower_inventory }}"
     job_tags: tenant
     tower_roles: [aci]
@@ -231,6 +232,7 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/aci_general_config.yml
     job_type: run
+    credential: vault
     inventory: "{{ tower_inventory }}"
     job_tags: vrf
     tower_roles: [aci]  
@@ -239,6 +241,7 @@ __tower_job_template:
     project: Network Demos
     playbook: playbooks/aci_general_config.yml
     job_type: run
+    credential: vault
     inventory: "{{ tower_inventory }}"
     job_tags: bd
     tower_roles: [aci]
